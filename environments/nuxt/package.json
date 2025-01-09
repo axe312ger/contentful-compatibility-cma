@@ -1,0 +1,25 @@
+{
+  "name": "nuxt-app",
+  "private": true,
+  "version": "0.0.0",
+  "type": "module",
+  "scripts": {
+    "build": "nuxt build",
+    "dev": "nuxt dev",
+    "generate": "nuxt generate",
+    "preview": "nuxt preview",
+    "test": "npm run build && start-server-and-test preview http://localhost:3000 test:execute",
+    "test:execute": "node test.js",
+    "postinstall": "nuxt prepare && cp -f ../../.env ."
+  },
+  "dependencies": {
+    "contentful-management": "^12.0.0-local.3",
+    "nuxt": "^3.14.1592",
+    "vite": "^5.4.11",
+    "vue": "latest",
+    "vue-router": "latest"
+  },
+  "devDependencies": {
+    "selenium-webdriver": "^4.27.0"
+  }
+}

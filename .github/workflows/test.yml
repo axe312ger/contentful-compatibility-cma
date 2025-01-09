@@ -1,0 +1,77 @@
+name: Test via npm start
+
+on:
+  push:
+    branches:
+      - main
+      - cma
+  pull_request:
+    branches:
+      - main
+      - cma
+
+jobs:
+  install-for-yarn-cache:
+    runs-on: self-hosted
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Install Chrome
+        uses: browser-actions/setup-chrome@v1
+        with:
+          chrome-version: 131
+          install-chromedriver: true
+
+      - name: Verify Chrome Version
+        run: chrome --version
+
+      - name: Install dependencies
+        run: yarn install
+  run-tests:
+    needs: install-for-yarn-cache
+    runs-on: self-hosted
+    strategy:
+      max-parallel: 20
+      matrix:
+        include:
+          - environment: angular
+          # - environment: browser-1
+          # - environment: browser-2
+          # - environment: browser-3
+          - environment: gatsbyjs
+          - environment: nextjs
+          - environment: nextjs-ts
+          - environment: node-cjs
+          - environment: node-mjs
+          - environment: node-ts-cjs
+          - environment: node-ts-mjs
+          - environment: nuxt
+          - environment: react-native-expo
+          - environment: rollup
+          - environment: svelte
+          - environment: vite
+          - environment: vite-ts
+          - environment: webpack
+      fail-fast: false
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Install Chrome
+        uses: browser-actions/setup-chrome@v1
+        with:
+          chrome-version: 131
+          install-chromedriver: true
+
+      - name: Verify Chrome Version
+        run: chrome --version
+
+      - name: Install dependencies
+        run: yarn install
+
+      - name: Run tests
+        run: npm test
+        working-directory: environments/${{ matrix.environment }}
+        env:
+          BROWSER: "chrome"

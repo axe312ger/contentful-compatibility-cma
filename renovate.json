@@ -1,0 +1,73 @@
+{
+  "$schema": "https://docs.renovatebot.com/renovate-schema.json",
+  "extends": ["config:recommended"],
+  "baseBranches": ["main"],
+  "packageRules": [
+    {
+      "matchDepNames": ["node", "@types/node"],
+      "groupName": "node dependencies"
+    },
+    {
+      "matchFileNames": ["environments/angular/**"],
+      "groupName": "angular environment"
+    },
+    {
+      "matchFileNames": ["environments/gatsbyjs/**"],
+      "groupName": "gatsby environment"
+    },
+    {
+      "matchFileNames": ["environments/nextjs/**", "environments/nextjs-ts/**"],
+      "groupName": "next.js environments"
+    },
+    {
+      "matchFileNames": ["environments/nuxt/**"],
+      "groupName": "nuxt environment"
+    },
+    {
+      "matchFileNames": ["environments/react-native-expo/**"],
+      "groupName": "react native expo environment"
+    },
+    {
+      "matchFileNames": ["environments/rollup/**"],
+      "groupName": "rollup environment"
+    },
+    {
+      "matchFileNames": ["environments/svelte/**"],
+      "groupName": "svelte environment"
+    },
+    {
+      "matchFileNames": ["environments/vite/**", "environments/vite-ts/**"],
+      "groupName": "vite environments"
+    },
+    {
+      "matchFileNames": ["environments/webpack/**"],
+      "groupName": "webpack environment"
+    },
+    {
+      "matchFileNames": [
+        "environments/node-cjs/**",
+        "environments/node-mjs/**"
+      ],
+      "groupName": "node environments"
+    },
+    {
+      "matchFileNames": [
+        "environments/node-ts-cjs/**",
+        "environments/node-ts-mjs/**"
+      ],
+      "groupName": "node TS environments"
+    },
+    {
+      "matchFileNames": [
+        "environments/browser-1/**",
+        "environments/browser-2/**",
+        "environments/browser-3/**"
+      ],
+      "groupName": "browser environments"
+    }
+  ],
+  "separateMinorPatch": true,
+  "dependencyDashboard": true,
+  "prHourlyLimit": 4,
+  "prConcurrentLimit": 420
+}

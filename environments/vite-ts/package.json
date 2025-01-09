@@ -1,0 +1,18 @@
+{
+  "name": "vite-ts",
+  "private": true,
+  "version": "0.0.0",
+  "type": "module",
+  "scripts": {
+    "dev": "vite",
+    "build": "tsc && vite build",
+    "preview": "vite preview --host 127.0.0.1 --port 4173",
+    "test": "npm run build && start-server-and-test preview http://127.0.0.1:4173 test:execute",
+    "test:execute": "node test.js",
+    "postinstall": "cp -f ../../.env ."
+  },
+  "devDependencies": {
+    "typescript": "^5.2.2",
+    "vite": "^5.2.0"
+  }
+}

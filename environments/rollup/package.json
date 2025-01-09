@@ -1,0 +1,22 @@
+{
+  "name": "rollup",
+  "private": true,
+  "version": "0.0.0",
+  "type": "module",
+  "scripts": {
+    "build": "rollup -c && cp src/index.html dist/",
+    "preview": "serve dist",
+    "test": "npm run build && start-server-and-test preview http://localhost:3000 test:execute",
+    "test:execute": "node src/test.js"
+  },
+  "devDependencies": {
+    "@rollup/plugin-commonjs": "^28.0.0",
+    "@rollup/plugin-node-resolve": "^16.0.0",
+    "rollup": "^4.16.4",
+    "rollup-plugin-dotenv": "^0.5.1",
+    "serve": "^14.2.3"
+  },
+  "dependencies": {
+    "contentful-management": "^12.0.0-local.3"
+  }
+}

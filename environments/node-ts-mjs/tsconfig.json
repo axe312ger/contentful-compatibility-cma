@@ -1,0 +1,7 @@
+{
+  "compilerOptions": {
+    "module": "CommonJS", // Use CommonJS for compatibility with Node.js module system
+    "target": "ES5", // Target ES5 for broad compatibility
+    "outDir": "./dist" // Specify an output directory for compiled files
+  }
+}

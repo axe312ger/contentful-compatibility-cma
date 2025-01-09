@@ -1,0 +1,20 @@
+{
+  "name": "webpack",
+  "private": true,
+  "version": "0.0.0",
+  "type": "module",
+  "scripts": {
+    "build": "webpack && cp src/index.html dist/",
+    "preview": "serve dist",
+    "test": "npm run build && start-server-and-test preview http://localhost:3000 test:execute",
+    "test:execute": "node src/test.js"
+  },
+  "devDependencies": {
+    "serve": "^14.2.3",
+    "webpack": "^5.91.0",
+    "webpack-cli": "^6.0.0"
+  },
+  "dependencies": {
+    "contentful-management": "^12.0.0-local.3"
+  }
+}

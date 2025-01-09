@@ -1,0 +1,33 @@
+{
+  "name": "react-native-expo",
+  "version": "1.0.0",
+  "main": "index.js",
+  "scripts": {
+    "start": "expo start",
+    "android": "expo start --android --clear",
+    "ios": "expo start --ios --clear",
+    "web": "expo start --web --clear",
+    "build": "expo export --platform web --clear",
+    "preview": "serve dist",
+    "test": "yarn && npm run build && start-server-and-test preview http://localhost:3000 test:execute",
+    "test:execute": "node test.js",
+    "postinstall": "cp -f ../../.env ."
+  },
+  "dependencies": {
+    "@expo/metro-runtime": "~4.0.0",
+    "expo": "~52.0.0",
+    "expo-status-bar": "~2.0.0",
+    "react": "18.3.1",
+    "react-dom": "18.3.1",
+    "react-native": "0.76.5",
+    "react-native-web": "~0.19.13"
+  },
+  "devDependencies": {
+    "@babel/core": "^7.25.2",
+    "@babel/preset-env": "^7.1.6",
+    "selenium-webdriver": "^4.20.0",
+    "serve": "^14.2.3",
+    "start-server-and-test": "^2.0.3"
+  },
+  "private": true
+}

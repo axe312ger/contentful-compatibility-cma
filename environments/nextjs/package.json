@@ -1,0 +1,25 @@
+{
+  "name": "nextjs",
+  "version": "0.1.0",
+  "private": true,
+  "scripts": {
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start",
+    "lint": "next lint",
+    "test": "npm run build && start-server-and-test start http://localhost:3000 test:execute",
+    "test:execute": "jest",
+    "postinstall": "cp -f ../../.env ."
+  },
+  "dependencies": {
+    "contentful-management": "^12.0.0-local.3",
+    "next": "15.1.3",
+    "react": "^18.0.0",
+    "react-dom": "^18.0.0"
+  },
+  "devDependencies": {
+    "jest": "^29.0.0",
+    "selenium-webdriver": "4.27.0",
+    "start-server-and-test": "^2.0.3"
+  }
+}
