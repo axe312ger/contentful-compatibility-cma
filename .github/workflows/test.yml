@@ -70,6 +70,9 @@ jobs:
       - name: Install dependencies
         run: yarn install
 
+      - name: Preparing .env file
+        run: sed "s/FILLME/$CMA_ACCESS_TOKEN/g" .env.example > .env
+
       - name: Run tests
         run: npm test
         working-directory: environments/${{ matrix.environment }}
