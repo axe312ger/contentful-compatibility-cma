@@ -26,6 +26,9 @@ jobs:
       - name: Verify Chrome Version
         run: chrome --version
 
+      - name: Dummy .env file
+        run: cp .env.example .env
+
       - name: Install dependencies
         run: yarn install
   run-tests:
