@@ -69,9 +69,13 @@ jobs:
 
       - name: Debug Env Var
         run: echo $CMA_ACCESS_TOKEN
+        env:
+          CMA_ACCESS_TOKEN: ${{ secrets.CMA_ACCESS_TOKEN }}
 
       - name: Preparing .env file
         run: sed "s/FILLME/$CMA_ACCESS_TOKEN/g" .env.example > .env
+        env:
+          CMA_ACCESS_TOKEN: ${{ secrets.CMA_ACCESS_TOKEN }}
 
       - name: Install dependencies
         run: yarn install
