@@ -67,14 +67,14 @@ jobs:
       - name: Verify Chrome Version
         run: chrome --version
 
-      - name: Install dependencies
-        run: yarn install
-
       - name: Debug Env Var
         run: echo $CMA_ACCESS_TOKEN
 
       - name: Preparing .env file
         run: sed "s/FILLME/$CMA_ACCESS_TOKEN/g" .env.example > .env
+
+      - name: Install dependencies
+        run: yarn install
 
       - name: Run tests
         run: npm test
