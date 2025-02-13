@@ -12,7 +12,7 @@
     "postinstall": "cp -f ../../.env ."
   },
   "dependencies": {
-    "contentful-management": "^12.0.0-local.3",
+    "contentful-management": "11.45.0-beta.2",
     "next": "15.1.3",
     "react": "^18.0.0",
     "react-dom": "^18.0.0"

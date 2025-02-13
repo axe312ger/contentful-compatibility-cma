@@ -13,7 +13,7 @@
     "postinstall": "nuxt prepare && cp -f ../../.env ."
   },
   "dependencies": {
-    "contentful-management": "^12.0.0-local.3",
+    "contentful-management": "11.45.0-beta.2",
     "nuxt": "^3.14.1592",
     "vite": "^5.4.11",
     "vue": "latest",
