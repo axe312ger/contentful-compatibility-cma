@@ -19,9 +19,9 @@
     "./environments/*"
   ],
   "dependencies": {
-    "contentful-management": "^12.0.0-local.3"
+    "contentful-management": "11.45.0-beta.2"
   },
   "resolutions": {
-    "contentful-management": "^12.0.0-local.3"
+    "contentful-management": "11.45.0-beta.2"
   }
 }

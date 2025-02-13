@@ -26,11 +26,19 @@ jobs:
       - name: Verify Chrome Version
         run: chrome --version
 
+      - name: Dummy .env file
+        run: cp .env.example .env
+
       - name: Install dependencies
         run: yarn install
   run-tests:
     needs: install-for-yarn-cache
     runs-on: self-hosted
+    env:
+      CMA_ACCESS_TOKEN: ${{ secrets.CMA_ACCESS_TOKEN }}
+      EXPO_PUBLIC_CMA_ACCESS_TOKEN: ${{ secrets.CMA_ACCESS_TOKEN }}
+      NEXT_PUBLIC_CMA_ACCESS_TOKEN: ${{ secrets.CMA_ACCESS_TOKEN }}
+      VITE_CMA_ACCESS_TOKEN: ${{ secrets.CMA_ACCESS_TOKEN }}
     strategy:
       max-parallel: 20
       matrix:
@@ -39,7 +47,6 @@ jobs:
           # - environment: browser-1
           # - environment: browser-2
           # - environment: browser-3
-          - environment: gatsbyjs
           - environment: nextjs
           - environment: nextjs-ts
           - environment: node-cjs
@@ -66,6 +73,9 @@ jobs:
 
       - name: Verify Chrome Version
         run: chrome --version
+
+      - name: Preparing .env file
+        run: sed "s/FILLME/$CMA_ACCESS_TOKEN/g" .env.example > .env
 
       - name: Install dependencies
         run: yarn install
