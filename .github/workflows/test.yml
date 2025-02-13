@@ -42,7 +42,6 @@ jobs:
           # - environment: browser-1
           # - environment: browser-2
           # - environment: browser-3
-          - environment: gatsbyjs
           - environment: nextjs
           - environment: nextjs-ts
           - environment: node-cjs
@@ -88,3 +87,7 @@ jobs:
         working-directory: environments/${{ matrix.environment }}
         env:
           BROWSER: "chrome"
+          CMA_ACCESS_TOKEN: ${{ secrets.CMA_ACCESS_TOKEN }}
+          EXPO_PUBLIC_CMA_ACCESS_TOKEN: ${{ secrets.CMA_ACCESS_TOKEN }}
+          NEXT_PUBLIC_CMA_ACCESS_TOKEN: ${{ secrets.CMA_ACCESS_TOKEN }}
+          VITE_CMA_ACCESS_TOKEN: ${{ secrets.CMA_ACCESS_TOKEN }}
