@@ -34,6 +34,11 @@ jobs:
   run-tests:
     needs: install-for-yarn-cache
     runs-on: self-hosted
+    env:
+      CMA_ACCESS_TOKEN: ${{ secrets.CMA_ACCESS_TOKEN }}
+      EXPO_PUBLIC_CMA_ACCESS_TOKEN: ${{ secrets.CMA_ACCESS_TOKEN }}
+      NEXT_PUBLIC_CMA_ACCESS_TOKEN: ${{ secrets.CMA_ACCESS_TOKEN }}
+      VITE_CMA_ACCESS_TOKEN: ${{ secrets.CMA_ACCESS_TOKEN }}
     strategy:
       max-parallel: 20
       matrix:
@@ -69,15 +74,8 @@ jobs:
       - name: Verify Chrome Version
         run: chrome --version
 
-      - name: Debug Env Var
-        run: echo $CMA_ACCESS_TOKEN
-        env:
-          CMA_ACCESS_TOKEN: ${{ secrets.CMA_ACCESS_TOKEN }}
-
       - name: Preparing .env file
         run: sed "s/FILLME/$CMA_ACCESS_TOKEN/g" .env.example > .env
-        env:
-          CMA_ACCESS_TOKEN: ${{ secrets.CMA_ACCESS_TOKEN }}
 
       - name: Install dependencies
         run: yarn install
@@ -87,7 +85,3 @@ jobs:
         working-directory: environments/${{ matrix.environment }}
         env:
           BROWSER: "chrome"
-          CMA_ACCESS_TOKEN: ${{ secrets.CMA_ACCESS_TOKEN }}
-          EXPO_PUBLIC_CMA_ACCESS_TOKEN: ${{ secrets.CMA_ACCESS_TOKEN }}
-          NEXT_PUBLIC_CMA_ACCESS_TOKEN: ${{ secrets.CMA_ACCESS_TOKEN }}
-          VITE_CMA_ACCESS_TOKEN: ${{ secrets.CMA_ACCESS_TOKEN }}
