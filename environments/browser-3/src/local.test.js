@@ -31,7 +31,7 @@ describe("contentful.js execution test", () => {
     const loadingResultText = await loadingResult.getText();
     assert.strictEqual(
       loadingResultText,
-      "✅ Success!",
+      "✅ Success! (Plain + Legacy APIs)",
       "Result text does not indicate success."
     );
     assert(

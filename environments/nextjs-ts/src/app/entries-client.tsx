@@ -10,14 +10,21 @@ export default function EntriesClient() {
   useEffect(() => {
     const load = async () => {
       try {
-        const client = createClient({
-          // Never store your Contentful credentials in your projects config file.
-          // Use: https://www.gatsbyjs.com/docs/how-to/local-development/environment-variables/
-          accessToken: process.env.NEXT_PUBLIC_CMA_ACCESS_TOKEN || "",
-        });
+        const accessToken = process.env.NEXT_PUBLIC_CMA_ACCESS_TOKEN || "";
 
-        await client.getCurrentUser();
-        setResult(`✅ Success!`);
+        // Test 1: Plain Client API (new default)
+        const plainClient = createClient({ accessToken });
+
+        // Test 2: Legacy Client API
+        const legacyClient = createClient({ accessToken }, { type: 'legacy' });
+
+        // Test both APIs
+        await Promise.all([
+          plainClient.user.getCurrent(),
+          legacyClient.getCurrentUser()
+        ]);
+
+        setResult(`✅ Success! (Plain + Legacy APIs)`);
       } catch (err) {
         setResult(`🚫 Error: ${(err as Error).message}`);
         throw err;

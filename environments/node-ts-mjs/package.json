@@ -2,17 +2,19 @@
   "name": "ts-mjs",
   "version": "1.0.0",
   "description": "",
-  "main": "index.js",
+  "type": "module",
+  "main": "dist/index.js",
   "scripts": {
     "test": "tsc && node dist && ts-node ."
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
-  "dependencies": {
-    "ts-node": "^10.9.2"
-  },
+  "dependencies": {},
   "devDependencies": {
-    "@types/node": "^18"
+    "@types/node": "^20",
+    "ts-node": "^10.9.2",
+    "tsc": "^2.0.4",
+    "typescript": "^5.9.3"
   }
 }

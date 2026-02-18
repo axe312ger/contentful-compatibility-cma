@@ -21,7 +21,7 @@ describe("contentful.js execution test", () => {
     const serverResultText = await serverResult.getText();
     assert.strictEqual(
       serverResultText,
-      "✅ Success!",
+      "✅ Success! (Plain + Legacy APIs)",
       "Server result text does not indicate success."
     );
     assert(
@@ -36,7 +36,7 @@ describe("contentful.js execution test", () => {
     const clientResultText = await clientResult.getText();
     assert.strictEqual(
       clientResultText,
-      "✅ Success!",
+      "✅ Success! (Plain + Legacy APIs)",
       "Client result text does not indicate success."
     );
     assert(

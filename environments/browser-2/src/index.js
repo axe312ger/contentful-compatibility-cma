@@ -2,15 +2,21 @@ function onload() {
   const loading = document.getElementById("loading-entries");
 
   try {
-    const client = contentfulManagement.createClient({
-      // Never store your Contentful credentials in your projects config file.
-      // Use: https://www.gatsbyjs.com/docs/how-to/local-development/environment-variables/
-      accessToken: process.env.CMA_ACCESS_TOKEN,
-    });
+    const accessToken = process.env.CMA_ACCESS_TOKEN;
 
-    client
-      .getCurrentUser()
-      .then((result) => (loading.innerText = `✅ Success!`))
+    // Test 1: Plain Client API (new default)
+    const plainClient = contentfulManagement.createClient({ accessToken });
+
+    // Test 2: Legacy Client API
+    const legacyClient = contentfulManagement.createClient({ accessToken }, { type: 'legacy' });
+
+    Promise.all([
+      plainClient.user.getCurrent(),
+      legacyClient.getCurrentUser()
+    ])
+      .then(([plainResult, legacyResult]) => {
+        loading.innerText = `✅ Success! (Plain + Legacy APIs)`;
+      })
       .catch((err) => {
         loading.innerText = `🚫 Error: ${err.message}`;
         throw err;

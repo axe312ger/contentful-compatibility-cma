@@ -14,7 +14,7 @@ import { setupSeleniumClient } from "../../scripts/setup-selenium.cjs";
   const scriptSetupResultText = await scriptSetupResult.getText();
   assert.strictEqual(
     scriptSetupResultText,
-    "✅ Success!",
+    "✅ Success! (Plain + Legacy APIs)",
     "Result text does not indicate success."
   );
 
@@ -24,7 +24,7 @@ import { setupSeleniumClient } from "../../scripts/setup-selenium.cjs";
   const compositionResultText = await compositionResult.getText();
   assert.strictEqual(
     compositionResultText,
-    "✅ Success using composables!",
+    "✅ Success using composables! (Plain + Legacy APIs)",
     "Result text does not indicate success."
   );
 

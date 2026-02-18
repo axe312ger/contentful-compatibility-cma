@@ -1,5 +1,5 @@
 {
-  "name": "webpack",
+  "name": "webpack-esm",
   "private": true,
   "version": "0.0.0",
   "type": "module",
@@ -15,6 +15,6 @@
     "webpack-cli": "^6.0.0"
   },
   "dependencies": {
-    "contentful-management": "12.0.0-beta.1"
+    "contentful-management": "12.0.0-new-beta.13"
   }
 }

@@ -1,7 +1,8 @@
-import { Component } from '@angular/core';
+import { Component, OnInit, PLATFORM_ID, Inject } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
-import { CommonModule } from '@angular/common';
-import { ContentfulService } from './contentful.service';
+import { CommonModule, isPlatformBrowser } from '@angular/common';
+import { createClient } from 'contentful-management';
+import { environment } from '../environments/environment';
 
 @Component({
   selector: 'app-root',
@@ -9,20 +10,34 @@ import { ContentfulService } from './contentful.service';
   imports: [RouterOutlet, CommonModule],
   templateUrl: './app.component.html',
   styleUrl: './app.component.css',
-  providers: [ContentfulService],
 })
-export class AppComponent {
-  // define private class properties
-  public result: string = "Loading...";
-
+export class AppComponent implements OnInit {
+  result: string = "Loading...";
   title = 'angular';
 
-  constructor(private contentfulService: ContentfulService) {}
+  constructor(@Inject(PLATFORM_ID) private platformId: Object) {}
 
-  // fetch data on init
-  ngOnInit() {
-    this.contentfulService
-      .getCurrentUser()
-      .then((result) => (this.result = result));
+  ngOnInit(): void {
+    if (isPlatformBrowser(this.platformId)) {
+      const accessToken = environment.CMA_ACCESS_TOKEN;
+
+      // Test 1: Plain Client API (new default)
+      const plainClient = createClient({ accessToken });
+
+      // Test 2: Legacy Client API
+      const legacyClient = createClient({ accessToken }, { type: 'legacy' });
+
+      // Test both APIs
+      Promise.all([
+        plainClient.user.getCurrent(),
+        legacyClient.getCurrentUser()
+      ])
+        .then(() => {
+          this.result = '✅ Success! (Plain + Legacy APIs)';
+        })
+        .catch((err: Error) => {
+          this.result = `🚫 Error: ${err.message}`;
+        });
+    }
   }
 }

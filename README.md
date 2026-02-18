@@ -12,8 +12,17 @@ Guarantee that Contentful SDKs:
 * Work seamlessly in **Node.js** (CJS, ESM, TypeScript).
 * Are compatible with **browsers**, including mobile platforms.
 * Integrate reliably with **frameworks, bundlers, and runtimes**.
+* Support both **Plain Client API** (new default) and **Legacy Client API**.
 
 This suite serves as both a compatibility testbed and a reference for developers implementing Contentful SDKs in real-world projects.
+
+## What Gets Tested
+
+Each environment validates both client APIs:
+* **Plain Client API**: `client.user.getCurrent()` - the new chainable API
+* **Legacy Client API**: `client.getCurrentUser()` - the traditional API
+
+This ensures backward compatibility and a smooth migration path for existing implementations.
 
 ## Supported Environments
 

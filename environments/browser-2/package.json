@@ -2,13 +2,13 @@
   "name": "browser-2",
   "version": "1.0.0",
   "description": "",
-  "main": "index.js",
   "scripts": {
-    "postinstall": "cp ../../node_modules/contentful-management/dist/contentful-management.browser.min.js ./src && npm run clean",
+    "postinstall": "cp ../../node_modules/contentful-management/dist/browser/index.min.js ./src && npm run clean",
     "start": "parcel ./src/index.html --no-cache",
     "clean": "rm -rf dist .parcel-cache",
     "test": "npm run clean && start-server-and-test start http://localhost:1234 test:execute",
-    "test:execute": "browserstack-node-sdk jest src/local.test.js"
+    "test:execute": "node src/test.js",
+    "test:browserstack": "browserstack-node-sdk jest src/local.test.js"
   },
   "keywords": [],
   "author": "",
@@ -23,6 +23,6 @@
     "start-server-and-test": "^2.0.3"
   },
   "dependencies": {
-    "contentful-management": "12.0.0-beta.1"
+    "contentful-management": "12.0.0-new-beta.13"
   }
 }

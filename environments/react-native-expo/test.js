@@ -15,7 +15,7 @@ const { setupSeleniumClient } = require("../../scripts/setup-selenium.cjs");
   const loadedResultText = await loadingResult.getText();
   assert.strictEqual(
     loadedResultText,
-    "✅ Success!",
+    "✅ Success! (Plain + Legacy APIs)",
     "Result text does not indicate success."
   );
   assert(

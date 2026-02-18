@@ -7,12 +7,21 @@ export const useContentful = () => {
 
   const loadEntries = async () => {
     try {
-      const client = contentful.createClient({
-        accessToken: import.meta.env.VITE_CMA_ACCESS_TOKEN,
-      });
+      const accessToken = import.meta.env.VITE_CMA_ACCESS_TOKEN;
 
-      await client.getCurrentUser();
-      result.value = "✅ Success using composables!";
+      // Test 1: Plain Client API (new default)
+      const plainClient = contentful.createClient({ accessToken });
+
+      // Test 2: Legacy Client API
+      const legacyClient = contentful.createClient({ accessToken }, { type: 'legacy' });
+
+      // Test both APIs
+      await Promise.all([
+        plainClient.user.getCurrent(),
+        legacyClient.getCurrentUser()
+      ]);
+
+      result.value = "✅ Success using composables! (Plain + Legacy APIs)";
     } catch (err) {
       console.error(`Error fetching entries: ${err.message}`);
       error.value = err.message;

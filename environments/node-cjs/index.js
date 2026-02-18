@@ -1,18 +1,29 @@
 const contentful = require("contentful-management");
 
-const client = contentful.createClient({
-  // Never store your Contentful credentials in your projects config file.
-  // Use: https://www.gatsbyjs.com/docs/how-to/local-development/environment-variables/
-  accessToken: process.env.CMA_ACCESS_TOKEN,
-});
+const accessToken = process.env.CMA_ACCESS_TOKEN;
 
-client
-  .getCurrentUser()
-  .then((result) => {
-    console.log(`✅ Success cjs - was able to conntect to Contentful Managment api with user ${result.sys.id}!`);
-  })
-  .catch((err) => {
-    console.log(`🚫 Error cjs:`);
-    console.log({ err });
-    throw err
-  });
+// Test 1: Plain Client API (new default)
+const plainClient = contentful.createClient({ accessToken });
+
+// Test 2: Legacy Client API
+const legacyClient = contentful.createClient({ accessToken }, { type: 'legacy' });
+
+async function runTests() {
+  // Test Plain Client
+  console.log("Testing Plain Client API...");
+  const plainUser = await plainClient.user.getCurrent();
+  console.log(`✅ Plain Client: Success with user ${plainUser.sys.id}`);
+
+  // Test Legacy Client
+  console.log("Testing Legacy Client API...");
+  const legacyUser = await legacyClient.getCurrentUser();
+  console.log(`✅ Legacy Client: Success with user ${legacyUser.sys.id}`);
+
+  console.log(`✅ Success cjs - Both APIs working!`);
+}
+
+runTests().catch((err) => {
+  console.log(`🚫 Error cjs:`);
+  console.log({ err });
+  throw err;
+});
